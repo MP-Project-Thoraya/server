@@ -24,6 +24,14 @@ Key |type   |   options                              | default value
 ------------- | -----------  | ---------------------------           |----------------------
 email         | String   |required, unique                      |N/A
 username        |  String    |required                         |N/A
+password        | String   |required                                            |N/A
+isDeleted       | Boolean   |                     |N/A
+resetLink       | String   |                    |N/A
+avatar       |  String    |                       |N/A
+role         | mongoose.Schema   |                 |N/A
+isconfirme       | type: Boolean  |                 |N/A
+
+
 
 ##  Entity Relationship Diagram
 ![ ](https://github.com/MP-Project-Thoraya/server/blob/main/erd.png)
