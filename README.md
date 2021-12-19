@@ -55,7 +55,7 @@ user      |  mongoose.Schema    |                                          |N/A
 post       | mongoose.Schema   |                     |N/A
 
 ## Backend routes
-## Router Routes
+
 HTTP Method  | authorize    |   Path                               | Request Body
 ------------- | -----------  | ---------------------------           |----------------------
 POST         | public     |`/user/create`                         |{email, password, role}
