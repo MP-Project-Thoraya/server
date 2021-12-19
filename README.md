@@ -54,6 +54,10 @@ isDeleted |  Boolean    |                       |N/A
 user      |  mongoose.Schema    |                                          |N/A
 post       | mongoose.Schema   |                     |N/A
 
+## Backend routes
+HTTP Method |URL   |   Request Body                           | Success status  | Error Status 
+------------- | -----------  | ---------------------------           |----------------------  |----------------------
+text     | String   | required                    |N/A             |N/A                   |N/A
 
 ##  Entity Relationship Diagram
 ![ ](https://github.com/MP-Project-Thoraya/server/blob/main/erd.png)
