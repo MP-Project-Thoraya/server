@@ -55,9 +55,28 @@ user      |  mongoose.Schema    |                                          |N/A
 post       | mongoose.Schema   |                     |N/A
 
 ## Backend routes
-HTTP Method |URL   |   Request Body                           | Success status  | Error Status 
-------------- | -----------  | ---------------------------           |----------------------  |----------------------
-text     | String   | required                    |N/A             |N/A                   |N/A
+## Router Routes
+HTTP Method  | authorize    |   Path                               | Request Body
+------------- | -----------  | ---------------------------           |----------------------
+POST         | public     |`/user/create`                         |{email, password, role}
+POST         | public    |`/user/log`                            |{email, password}
+GET          | admin only   |`/user/`                               |
+DELETE       | admin only   |`/user/`                               |
+GET          | public   |`/user/verifyemail/:email/:token`     |
+PUT          | public     |`/user/forgetPassword`                 |{email}
+PUT          | public    |`/user/resetPassword`                  |{resetLink, newPassword}
+GET          | user+admin   |`/user/:_id”`                          |
+POST         | public    |`/user/googlelogin`                    |{idToken}
+POST         | admin + user |`/comment/create`                      |{text,user,Post}
+PUT          | admin + user |`/comment/update`                      |{id, text}
+DELETE       | admin + user |`/comment/delete/:_id`                 |
+GET          | admin + user |`/posts/`                              |
+GET          | admin + user |`/posts/userPost/:postedBy`            |
+GET          | admin + user |`/posts/onePost/:_id`                  |
+POST         | admin + user |`/posts/create`                        |{image, description, post}
+PUT          | admin + user |`/posts/archivePost/:_id`              |{id}
+DELETE       | admin + user |`/posts/delete/:_id`                   |
+PUT          | admin + user |`/posts/update`                        |{id, newdescribe}
 
 ##  Entity Relationship Diagram
 ![ ](https://github.com/MP-Project-Thoraya/server/blob/main/erd.png)
