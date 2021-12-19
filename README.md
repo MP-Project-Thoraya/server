@@ -32,4 +32,22 @@ username        |  String    |required                         |N/A
 ![ ](https://github.com/MP-Project-Thoraya/server/blob/main/Uml.png)
 
 
+## Getting Started
+### Installation Packages
+#### 1-Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+- npm install express --save
+#### 2-Install CORS middleware that can be used to enable CORS with various options .
+- npm i cors
+#### 3-Install dotenv to create secret keys that your application needs 
+- npm i dotenv
+#### 4-mongoose is an elegant mongodb object modeling for node.js.
+-  npm install mongoose --save
+#### 5-morgan is a HTTP request logger middleware for node.js.
+- npm i morgan
+#### 6-bcrypt is a A library to help you hash passwords.
+- npm install bcrypt
+#### 7-jsonwebtoken is a JSON Web Token implementation (symmetric and asymmetric).
+- npm install jsonwebtoken
+#### 8-passport-google-oauth20 Passport strategy for authenticating with Google using the OAuth 2.0 API.
+- nmp i passport-google-oauth20
 
