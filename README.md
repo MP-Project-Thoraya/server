@@ -30,7 +30,29 @@ resetLink       | String   |                    |N/A
 avatar       |  String    |                       |N/A
 role         | mongoose.Schema   |                 |N/A
 isconfirme       | type: Boolean  |                 |N/A
+### Role Model
 
+Key |type   |   options                              | default value
+------------- | -----------  | ---------------------------           |----------------------
+ role        | String   |required                   |N/A
+permissions      | Array    |required                         |N/A
+###  Post Model
+
+Key |type   |   options                              | default value
+------------- | -----------  | ---------------------------           |----------------------
+image      | String   |                   |N/A
+description        |  String    |required                         |N/A
+user      |  mongoose.Schema    |                                          |N/A
+isDeleted       | Boolean   |                     |N/A
+
+### Comment Model
+
+Key |type   |   options                              | default value
+------------- | -----------  | ---------------------------           |----------------------
+text     | String   | required                    |N/A
+isDeleted |  Boolean    |                       |N/A
+user      |  mongoose.Schema    |                                          |N/A
+post       | mongoose.Schema   |                     |N/A
 
 
 ##  Entity Relationship Diagram
