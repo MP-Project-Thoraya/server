@@ -84,12 +84,11 @@ PUT          | admin + user |`/posts/archivePost/:_id`              |{id}
 DELETE       | admin + user |`/posts/delete/:_id`                   |
 PUT          | admin + user |`/posts/update`                        |{id, newdescribe}
 
+##  Entity Relationship Diagram
+![ ](https://github.com/MP-Project-Thoraya/server/blob/main/erd.png)
 
 ## UML Diagram
 ![ ](https://github.com/MP-Project-Thoraya/server/blob/main/Uml.png)
-
-##  Entity Relationship Diagram
-![ ](https://github.com/MP-Project-Thoraya/server/blob/main/erd.png)
 
 ## Getting Started
 ### Installation Packages
