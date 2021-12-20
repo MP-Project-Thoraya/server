@@ -3,6 +3,7 @@ const express =require ("express")
 const cors =require ("cors")
 const dotenv =require ('dotenv')
 const morgan=require ("morgan")
+require("./db/index");
 
 //اعدادات الملف
 dotenv.config();
