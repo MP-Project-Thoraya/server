@@ -21,6 +21,7 @@
 - Deployment: https://Deployment.com .
 - Local:  http://localhost:3000 .
 - Slides: https://Slides  .
+- Client Side :https://github.com/MP-Project-Thoraya/client
 - Trello: https://trello.com/thorayaalrashidi/boards
 - 
 ## Models
