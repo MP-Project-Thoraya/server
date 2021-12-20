@@ -17,6 +17,12 @@
 - As An Admin,  I Can Delete Users And What Is Added By The User On The Website.
 - As An Admin, I Can Update The Contents Of The Website.
 
+## Links
+- Deployment: https://Deployment.com .
+- Local:  http://localhost:3000 .
+- Slides: https://Slides  .
+- Trello: https://trello.com/thorayaalrashidi/boards
+- 
 ## Models
 ### User Model
 
@@ -78,12 +84,12 @@ PUT          | admin + user |`/posts/archivePost/:_id`              |{id}
 DELETE       | admin + user |`/posts/delete/:_id`                   |
 PUT          | admin + user |`/posts/update`                        |{id, newdescribe}
 
-##  Entity Relationship Diagram
-![ ](https://github.com/MP-Project-Thoraya/server/blob/main/erd.png)
 
 ## UML Diagram
 ![ ](https://github.com/MP-Project-Thoraya/server/blob/main/Uml.png)
 
+##  Entity Relationship Diagram
+![ ](https://github.com/MP-Project-Thoraya/server/blob/main/erd.png)
 
 ## Getting Started
 ### Installation Packages
