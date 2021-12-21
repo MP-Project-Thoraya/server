@@ -6,20 +6,23 @@ const morgan=require ("morgan")
 require("./db/index");
 
 //اعدادات الملف
+
 dotenv.config();
+
+
 // 2 بدء التشغل 
 const app =express ();
 
 
-// 3 middleware اي شي حملته وبسوي وابغى استخدمه لازم اكتبه هينا
+// جميع الراوترات يلي سويته 
+const userRouter = require("./routers/routes/user");
+
+
+// 3 middleware اي شي حملته او بنيته وابغى استخدمه لازم اكتبه هينا
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"))
-
-
-
-
-
+app.use(userRouter)
 
 // 4  اعدادات البورت
 const PORT = process.env.PORT || 3000;
