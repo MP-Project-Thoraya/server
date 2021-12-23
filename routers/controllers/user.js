@@ -138,9 +138,9 @@ const activateAccount = (req, res) => {
   })
 
 }     
-
+/*
 /// forgetpassword 
-/*const forgetpassword = (req, res) => {
+const forgetpassword = (req, res) => {
   const { email } = req.body;
   usermodel.findOne({ email }, (err, user) => {
     if (err || ! user)
@@ -151,11 +151,9 @@ const activateAccount = (req, res) => {
     const token = jwt.sign({ _id: user._id }, process.env.RESET_PASSWORD_KEY, {
       expiresIn: "60m",
     });
-
-)}
-
-*/
-
+) */                                   
+                   
+                   
 
 /// reset link 
 

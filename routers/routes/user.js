@@ -20,5 +20,4 @@ userRouter.post("/active-email", activateAccount );
 //userRouter.put("/forgetpassword", forgetpassword);
 userRouter.get("/allusers", getallusers);
 userRouter.delete("/delusers/:id", deleteUser );
-
 module.exports = userRouter;
