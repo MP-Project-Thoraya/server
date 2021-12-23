@@ -19,6 +19,7 @@ const app =express ();
 // جميع الراوترات يلي سويته 
 const userRouter = require("./routers/routes/user");
 const servicesRouter =require ('./routers/routes/services')
+const commentRouter =require ('./routers/routes/comments')
 
 
 // 3 middleware اي شي حملته او بنيته وابغى استخدمه لازم اكتبه هينا
@@ -27,6 +28,7 @@ app.use(cors());
 app.use(morgan("dev"))
 app.use(userRouter)
 app.use(servicesRouter)
+app.use(commentRouter)
 
 
 // 4  اعدادات البورت
