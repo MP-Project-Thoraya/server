@@ -45,6 +45,7 @@ const login = (req, res) => {
           if (unhashPassword) {
             const payload = {
               role: result.role,
+              _id: result._id,
             };
             const options = {
               expiresIn: "12h",
