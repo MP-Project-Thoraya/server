@@ -14,8 +14,11 @@ dotenv.config();
 const app =express ();
 
 
+
+
 // جميع الراوترات يلي سويته 
 const userRouter = require("./routers/routes/user");
+const servicesRouter =require ('./routers/routes/services')
 
 
 // 3 middleware اي شي حملته او بنيته وابغى استخدمه لازم اكتبه هينا
@@ -23,6 +26,8 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"))
 app.use(userRouter)
+app.use(servicesRouter)
+
 
 // 4  اعدادات البورت
 const PORT = process.env.PORT || 3000;
