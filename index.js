@@ -20,7 +20,7 @@ const app =express ();
 const userRouter = require("./routers/routes/user");
 const servicesRouter =require ('./routers/routes/services')
 const commentRouter =require ('./routers/routes/comments')
-
+const roleRouter=require ('./routers/routes/role')
 
 // 3 middleware اي شي حملته او بنيته وابغى استخدمه لازم اكتبه هينا
 app.use(express.json());
@@ -29,6 +29,7 @@ app.use(morgan("dev"))
 app.use(userRouter)
 app.use(servicesRouter)
 app.use(commentRouter)
+app.use(roleRouter)
 
 
 // 4  اعدادات البورت

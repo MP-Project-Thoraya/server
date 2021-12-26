@@ -7,6 +7,7 @@ const {
   signup,
   getallusers,
   deleteUser ,
+  updateuser  ,
   activateAccount ,
   forgetpassword
 } = require("./../controllers/user");
@@ -20,5 +21,7 @@ userRouter.post("/active-email", activateAccount );
 //userRouter.put("/forgetpassword", forgetpassword);
 userRouter.get("/allusers", getallusers);
 userRouter.delete("/delusers/:id", authentication , deleteUser );
+userRouter.put("/updateuser:id", updateuser);
+
 
 module.exports = userRouter;

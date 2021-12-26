@@ -21,7 +21,7 @@ const usermodel =new mongoose.Schema ({
       
         },
       isDeleted:{type :Boolean ,default :false },
-      role:{type: mongoose.Schema.Types.ObjectId, ref: "role",default:"61a86bb7d10e31f22c0a3301"},
+      role:{type: mongoose.Schema.Types.ObjectId, ref: "role"},
       isconfirme: { type: Boolean, default: false, },
       resetLink: { data: String, default:''}
 },

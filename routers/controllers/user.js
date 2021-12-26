@@ -1,7 +1,8 @@
 const usermodel= require ('./../../db/models/user')
 //this import for all package for email and password secret
 const bcrypt=require ('bcrypt')
-const jwt=require ('jsonwebtoken')
+const jwt=require ('jsonwebtoken');
+const user = require('./../../db/models/user');
 const SECRET_KEY = process.env.SECRET_KEY;
 
 
@@ -94,6 +95,26 @@ const getuser = async (req, res) => {
         res.status(400).json(err);
       });
   };
+//update user
+const updateuser = async(req, res) => {
+  if (req.body.userId === req.params.id){
+
+  try {
+ const updateuser=await user.findByIdAndUpdate (req.params.id ,{
+  $set: req.body ,
+
+ },{new:true});
+ res.status(200).json(updateuser);
+} catch (error) {
+  res.status(400).json(error);
+}
+}else {
+  res.status(401).json("only you account");
+}
+}
+
+
+
 //delete user
 
 const deleteUser  = (req, res) => {
@@ -115,7 +136,7 @@ const deleteUser  = (req, res) => {
 //////////////// active account 
 
 const activateAccount = (req, res) => {
-  token = req.params.token;
+ const token = req.params.token;
   jwt.verify(token, SECRET_KEY, (err, resul) => {
     console.log(resul);
     if (err) {
@@ -146,16 +167,16 @@ const forgetpassword = (req, res) => {
   usermodel.findOne({ email }, (err, user) => {
     if (err || ! user)
     {
-
  return res.status(400).json({error:"user with this email doesn`t exists"})  
     }
     const token = jwt.sign({ _id: user._id }, process.env.RESET_PASSWORD_KEY, {
-      expiresIn: "60m",
-    });
-) */                                   
-                   
-                   
+      expiresIn: "60m", });
+      const data ={
+        from:'thoraya'
+      }
+           
+  */           
 
 /// reset link 
 
-module.exports = { signup, login , getallusers, getuser ,deleteUser, activateAccount };
+module.exports = { signup, login , getallusers, getuser , updateuser ,deleteUser, activateAccount };

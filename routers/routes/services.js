@@ -4,9 +4,8 @@ const authorization=require ('./../middleware/authorization')
 const { getallpost ,getuserpost,createnew, deletepost,updatePost } = require("./../controllers/services");
 
 const servicesRouter = express.Router();
-
 servicesRouter.get("/getall", getallpost);
-servicesRouter.get("/getone/:createby",getuserpost);
+servicesRouter.get("/getone/:createby",authentication,getuserpost);
 servicesRouter.post("/create",authentication, createnew);
 servicesRouter.delete("/delete/:id", authentication , deletepost);
 servicesRouter.put("/update/:_id",authentication, updatePost );
