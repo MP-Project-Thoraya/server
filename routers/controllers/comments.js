@@ -6,7 +6,7 @@ const getallcomments = (req, res) => {
     commentmodel
     .find({ isDelelted: false })
     .populate("createby")
-    .sort ({"createdAt":-1})
+    // .sort ({"createdAt":-1})
     .then((result) => {
       if (result) {
         res.status(200).json({ result });
@@ -41,8 +41,7 @@ const getusercomment = (req, res) => {
 };
 
 const createnewcomment= (req, res) => {
-        const { id } = req.params;
-        const { text,createby, onservicepost} = req.body;
+        const { text,createby,onservicepost} = req.body;
       
         const newComment = new commentmodel({
           text,
@@ -52,12 +51,12 @@ const createnewcomment= (req, res) => {
         newComment
           .save()
           .then((result) => {
-            commentmodel
-              .findByIdAndUpdate(id, { $push: { onservicepost: result._id } })
-              .then((result) => {
-                res.status(201).json(result);
+            // servmodel
+            //   .findByIdAndUpdate(id, { $push: { onservicepost: result._id } })
+            //   .then((result) => {
+            //     res.status(201).json(result);
         
-              });
+            //   });
             res.status(201).json(result);
           })
           .catch((err) => {

@@ -96,22 +96,63 @@ const getuser = async (req, res) => {
       });
   };
 //update user
-const updateuser = async(req, res) => {
-  if (req.body.userId === req.params.id){
 
-  try {
- const updateuser=await user.findByIdAndUpdate (req.params.id ,{
-  $set: req.body ,
+  const updateuser = (req, res) => {
+    console.log(req.token);
+    const { _id } = req.params;
+    const { email,username,password} = req.body;
+    try {
+      usermodel.findOne({ _id: _id }).then((result) => {
+        console.log(result);
+        if (result) {
+          if (result.createby == req.token._id) {
+            usermodel
+              .findOneAndUpdate(
+                { _id: _id },
+                { $set: { email:email,
+                password:password,
+              username:username }},
+                { new: true }
+              )
+              .then((result) => {
+                res.status(200).json(result);
+              });
+          } else if (req.token.role == "61c824b37826606eacd4bf69") {
+            usermodel
+              .findOneAndUpdate(
+                { _id: _id },
+                { $set: { email:email,
+                  password:password,
+                username:username  } }
+              )
+              .then((result) => {
+                res.status(200).json(result);
+              });
+          } else {
+            res.status(403).json({ message: "forbidden" });
+          }
+        } else {
+          res.status(404).send("user not found");
+        }
+      });
+    } catch (error) {
+      res.status(400).json(error);
+    }}
+//   if (req.body.userId === req.params.id){
 
- },{new:true});
- res.status(200).json(updateuser);
-} catch (error) {
-  res.status(400).json(error);
-}
-}else {
-  res.status(401).json("only you account");
-}
-}
+//   try {
+//  const updateuser=await user.findByIdAndUpdate (req.params.id ,{
+//   $set: req.body ,
+
+//  },{new:true});
+//  res.status(200).json(updateuser);
+// } catch (error) {
+//   res.status(400).json(error);
+// }
+// }else {
+//   res.status(401).json("only you account");
+// }
+// }
 
 
 
@@ -178,5 +219,47 @@ const forgetpassword = (req, res) => {
   */           
 
 /// reset link 
+const resetPassword = (req, res) => {
+  const { resetLink, newPass } = req.body;
+  if (
+    newPass.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{7,}$/)
+  ) {
+    if (resetLink) {
+      jwt.verify(
+ resetLink, 
+        process.env.RESET_PASSWORD_KEY,
+        async (err, result) => {
+          if (err) {
+            return res.status(201).json("token error");
+          }
+          const savePass = await bcrypt.hash(newPass, SALT);
+          usermodel.findOne({ resetLink }, (err, user) => { 
+            if (err || !user) {
+              return res
+                .status(201)
+                .json("user with this token does not exists");
+            }
 
-module.exports = { signup, login , getallusers, getuser , updateuser ,deleteUser, activateAccount };
+            return user.updateOne(
+              { resetLink: "", password: savePass },
+              (err, result) => {
+                if (err) {
+                  return res.status(400).json("error");
+                }
+                return res
+                  .status(200)
+                  .json("your password has been updated successfully");
+              }
+            );
+          });
+        }
+      );
+    } else {
+      return res.status(201).json("authentication error");
+    }
+  } else {
+    res.status(201).json("you need to insert a complix password");
+  }
+};
+
+module.exports = { signup, login , getallusers, getuser , updateuser ,deleteUser, activateAccount,resetPassword };
