@@ -6,7 +6,7 @@ const getallpost = (req, res) => {
   servmodel
     .find({ isDelelted: false })
     .populate("createby")
-    .sort({ createdAt: -1 })
+    // .sort({ createdAt: -1 })
     .then((result) => {
       if (result) {
         res.status(200).json({ result });
@@ -47,9 +47,10 @@ const getuserpost = (req, res) => {
 
 const createnew = (req, res) => {
   console.log(req.token._id);
-  const { image, description } = req.body;
+  const { image, description, title } = req.body;
   const newpost = new servmodel({
     image,
+    title,
     description,
     createby: req.token._id,
   });

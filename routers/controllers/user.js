@@ -219,5 +219,47 @@ const forgetpassword = (req, res) => {
   */           
 
 /// reset link 
+const resetPassword = (req, res) => {
+  const { resetLink, newPass } = req.body;
+  if (
+    newPass.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{7,}$/)
+  ) {
+    if (resetLink) {
+      jwt.verify(
+ resetLink, 
+        process.env.RESET_PASSWORD_KEY,
+        async (err, result) => {
+          if (err) {
+            return res.status(201).json("token error");
+          }
+          const savePass = await bcrypt.hash(newPass, SALT);
+          usermodel.findOne({ resetLink }, (err, user) => { 
+            if (err || !user) {
+              return res
+                .status(201)
+                .json("user with this token does not exists");
+            }
 
-module.exports = { signup, login , getallusers, getuser , updateuser ,deleteUser, activateAccount };
+            return user.updateOne(
+              { resetLink: "", password: savePass },
+              (err, result) => {
+                if (err) {
+                  return res.status(400).json("error");
+                }
+                return res
+                  .status(200)
+                  .json("your password has been updated successfully");
+              }
+            );
+          });
+        }
+      );
+    } else {
+      return res.status(201).json("authentication error");
+    }
+  } else {
+    res.status(201).json("you need to insert a complix password");
+  }
+};
+
+module.exports = { signup, login , getallusers, getuser , updateuser ,deleteUser, activateAccount,resetPassword };
