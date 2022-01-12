@@ -7,7 +7,7 @@ const servicesRouter = express.Router();
 servicesRouter.get("/getall", getallpost);
 servicesRouter.get("/getone/:createby",authentication,getuserpost);
 servicesRouter.post("/create_post", authentication, createnew);
-servicesRouter.delete("/delete/:id", authentication , deletepost);
+servicesRouter.delete("/deleteposts/:id", authentication , deletepost);
 servicesRouter.put("/update/:_id",authentication, updatePost );
 
 

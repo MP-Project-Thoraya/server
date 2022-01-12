@@ -42,7 +42,6 @@ const getusercomment = (req, res) => {
 
 const createnewcomment= (req, res) => {
         const { text,createby,onservicepost} = req.body;
-      
         const newComment = new commentmodel({
           text,
           createby,
