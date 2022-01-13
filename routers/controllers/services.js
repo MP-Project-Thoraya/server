@@ -4,7 +4,7 @@ const servmodel = require("./../../db/models/services");
 
 const getallpost = (req, res) => {
   servmodel
-    .find({ isDelelted: false })
+    .find({ isDeleted: false })
     .populate("createby")
     // .sort({ createdAt: -1 })
     .then((result) => {
