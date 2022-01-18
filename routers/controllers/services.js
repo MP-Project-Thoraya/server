@@ -1,3 +1,4 @@
+const { post } = require("../routes/user");
 const servmodel = require("./../../db/models/services");
 //const rolemodel = require("../../db/models/user");
 //const commentmodel= require("../../db/models/comment");
@@ -65,7 +66,9 @@ const createnew = (req, res) => {
     });
 };
 
+
 ///// delete post
+
 const deletepost = (req, res) => {
   const { id } = req.params;
   servmodel
@@ -83,11 +86,35 @@ const deletepost = (req, res) => {
     });
 };
 
+
+
+/*
+const deletepost = async (req, res) => {
+ 
+  try{
+   const post =await post.findById(req.params.id);
+   if (post.userId === req.params.userId ) {
+     await post.deleteone();
+res.status(200).json("post has deleted");
+
+  } else {
+    res.status(403).json("only you post")
+  }
+}
+catch (err) {
+  res.status(500).json(err);
+}
+};
+
+*/
+
+
+
 //// update
 const updatePost = (req, res) => {
   console.log(req.token);
   const { _id } = req.params;
-  const { description } = req.body;
+  const { description ,title,image } = req.body;
   try {
     servmodel.findOne({ _id: _id }).then((result) => {
       console.log(result);
@@ -96,7 +123,7 @@ const updatePost = (req, res) => {
           servmodel
             .findOneAndUpdate(
               { _id: _id },
-              { $set: { description: description } },
+              { $set: { description: description ,image:image ,title: title } },
               { new: true }
             )
             .then((result) => {
@@ -106,7 +133,7 @@ const updatePost = (req, res) => {
           servmodel
             .findOneAndUpdate(
               { _id: _id },
-              { $set: { description: description } }
+              { $set: { description: description ,image:image ,title: title  } }
             )
             .then((result) => {
               res.status(200).json(result);
