@@ -7,8 +7,10 @@ const {
   signup,
   getallusers,
   deleteUser ,
+  useraccount ,
   updateuser  ,
   activateAccount ,
+  getuser,
   forgetpassword
 } = require("./../controllers/user");
 
@@ -20,8 +22,11 @@ userRouter.post("/login", login);
 userRouter.post("/active-email", activateAccount );
 //userRouter.put("/forgetpassword", forgetpassword);
 userRouter.get("/allusers", getallusers);
-userRouter.delete("/delusers/:id", authentication , deleteUser );
-userRouter.put("/updateuser:id", updateuser);
+userRouter.get("/one_user/:id", getuser);
+// userRouter.delete("/delusers/:id", authentication , deleteUser );
+userRouter.delete("/delaccount/:id", authentication , deleteUser);
+userRouter.put("/updateuser/:_id",authentication , updateuser);
+
 
 
 module.exports = userRouter;
