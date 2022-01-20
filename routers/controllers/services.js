@@ -25,10 +25,10 @@ const getallpost = (req, res) => {
 const getuserpost = (req, res) => {
   const id = req.params.createby;
   console.log(id, "params");
-  const userId = req.token._id;
-  console.log(userId, "token");
+  // const userId = req.token._id;
+  // console.log(userId, "token");
   servmodel
-    .find({ _id: id })
+    .find({ createby: id })
     .populate("createby")
     .sort({ createdAt: -1 })
     .then((result) => {
@@ -40,6 +40,7 @@ const getuserpost = (req, res) => {
     })
 
     .catch((err) => {
+      console.log(err);
       res.status(400).json(err);
     });
 };
@@ -66,7 +67,6 @@ const createnew = (req, res) => {
     });
 };
 
-
 ///// delete post
 
 const deletepost = (req, res) => {
@@ -85,8 +85,6 @@ const deletepost = (req, res) => {
       res.status(400).json(err);
     });
 };
-
-
 
 /*
 const deletepost = async (req, res) => {
@@ -108,13 +106,11 @@ catch (err) {
 
 */
 
-
-
 //// update
 const updatePost = (req, res) => {
   console.log(req.token);
   const { _id } = req.params;
-  const { description ,title,image } = req.body;
+  const { description, title, image } = req.body;
   try {
     servmodel.findOne({ _id: _id }).then((result) => {
       console.log(result);
@@ -123,7 +119,9 @@ const updatePost = (req, res) => {
           servmodel
             .findOneAndUpdate(
               { _id: _id },
-              { $set: { description: description ,image:image ,title: title } },
+              {
+                $set: { description: description, image: image, title: title },
+              },
               { new: true }
             )
             .then((result) => {
@@ -133,7 +131,7 @@ const updatePost = (req, res) => {
           servmodel
             .findOneAndUpdate(
               { _id: _id },
-              { $set: { description: description ,image:image ,title: title  } }
+              { $set: { description: description, image: image, title: title } }
             )
             .then((result) => {
               res.status(200).json(result);
