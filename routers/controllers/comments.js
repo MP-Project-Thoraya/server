@@ -4,7 +4,7 @@ const servmodel=require('./../../db/models/services');
 /////// all comments 
 const getallcomments = (req, res) => {
     commentmodel
-    .find({ isDelelted: false })
+    .find({isDeleted: false })
     .populate("createby")
     // .sort ({"createdAt":-1})
     .then((result) => {
@@ -24,7 +24,7 @@ const getallcomments = (req, res) => {
 const getusercomment = (req, res) => {
     const {_id } = req.params;
     commentmodel
-    .find({})
+    .find({isDeleted: false})
     .populate("createby")
     .sort ({"createdAt":-1})
     .then((result) => {
@@ -94,11 +94,13 @@ const createnewcomment= (req, res) => {
     commentmodel
        .findByIdAndUpdate(id, { $set: { isDeleted: true } })
       .then((result) => {
-        if (result) {
-          res.status(200).json("the comment has deleted");
-        } else {
-          res.status(404).json("the comment not found");
-        }
+       console.log(result)
+        // (result) {
+         res.status(200).json("the comment has deleted");
+       // } else {
+        //  res.status(404).json("the comment not found");
+
+      //  }
       })
       
       .catch((err) => {
