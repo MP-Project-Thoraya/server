@@ -73,11 +73,12 @@ const deletepost = (req, res) => {
   servmodel
     .findByIdAndUpdate(id, { $set: { isDeleted: true } })
     .then((result) => {
-      if (result.createby == req.token._id) {
+      console.log(result)
+     // if (result.createby == req.token._id) {
         res.status(200).json("the post has deleted");
-      } else {
-        res.status(404).json("the post not found");
-      }
+     // } else {
+     //   res.status(404).json("the post not found");
+    //  }
     })
 
     .catch((err) => {
