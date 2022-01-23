@@ -1,4 +1,4 @@
-const { post } = require("../routes/user");
+
 const servmodel = require("./../../db/models/services");
 //const rolemodel = require("../../db/models/user");
 //const commentmodel= require("../../db/models/comment");
@@ -25,10 +25,8 @@ const getallpost = (req, res) => {
 const getuserpost = (req, res) => {
   const id = req.params.createby;
   console.log(id, "params");
-  // const userId = req.token._id;
-  // console.log(userId, "token");
   servmodel
-    .find({ createby: id })
+    .find({ createby: id ,isDeleted: false})
     .populate("createby")
     .sort({ createdAt: -1 })
     .then((result) => {
@@ -70,11 +68,12 @@ const createnew = (req, res) => {
 ///// delete post
 
 const deletepost = (req, res) => {
+  
   const { id } = req.params;
   servmodel
     .findByIdAndUpdate(id, { $set: { isDeleted: true } })
     .then((result) => {
-      if (result) {
+      if (result.createby == req.token._id) {
         res.status(200).json("the post has deleted");
       } else {
         res.status(404).json("the post not found");
@@ -86,25 +85,7 @@ const deletepost = (req, res) => {
     });
 };
 
-/*
-const deletepost = async (req, res) => {
- 
-  try{
-   const post =await post.findById(req.params.id);
-   if (post.userId === req.params.userId ) {
-     await post.deleteone();
-res.status(200).json("post has deleted");
 
-  } else {
-    res.status(403).json("only you post")
-  }
-}
-catch (err) {
-  res.status(500).json(err);
-}
-};
-
-*/
 
 //// update
 const updatePost = (req, res) => {

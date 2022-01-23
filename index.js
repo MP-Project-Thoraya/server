@@ -21,7 +21,7 @@ const userRouter = require("./routers/routes/user");
 const servicesRouter =require ('./routers/routes/services')
 const commentRouter =require ('./routers/routes/comments')
 const roleRouter=require ('./routers/routes/role')
-
+//const businessRouter=require ('./routers/routes/business')
 // 3 middleware اي شي حملته او بنيته وابغى استخدمه لازم اكتبه هينا
 app.use(express.json());
 app.use(cors());
@@ -30,6 +30,8 @@ app.use(userRouter)
 app.use(servicesRouter)
 app.use(commentRouter)
 app.use(roleRouter)
+//app.use(businessRouter)
+
 
 
 // 4  اعدادات البورت

@@ -64,6 +64,31 @@ const createnewcomment= (req, res) => {
       };
 
  ///delete 
+
+ const deletepost = (req, res) => {
+  
+  const { id } = req.params;
+  servmodel
+    .findByIdAndUpdate(id, { $set: { isDeleted: true } })
+    .then((result) => {
+      if (result.createby == req.token._id) {
+        res.status(200).json("the post has deleted");
+      } else {
+        res.status(404).json("the post not found");
+      }
+    })
+
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+
+
+
+
+
+
   const deletecomment  = (req, res) => {
     const { id } = req.params;
     commentmodel
