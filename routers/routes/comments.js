@@ -4,7 +4,7 @@ const {createnewcomment ,deletecomment , getallcomments, getusercomment ,updatec
 
 const commentRouter = express.Router();
 commentRouter.post("/createcomment",authentication, createnewcomment);
-commentRouter.delete("/deletecomment/:id", authentication, deletecomment);
+commentRouter.delete("/deletecomment/:id", deletecomment);
 commentRouter.get("/getallcomment", getallcomments);
 commentRouter.get("/getonecomment/:createby",authentication, getusercomment);
 commentRouter.put("/update/:_id", authentication,updatecomment  );
