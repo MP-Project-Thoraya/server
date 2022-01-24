@@ -8,7 +8,7 @@ const SECRET_KEY = process.env.SECRET_KEY;
 //sign up
 
 const signup = async (req, res) => {
-  const { email, password, username } = req.body;
+  const { email, password, username, role } = req.body;
   const SALT = Number(process.env.SALT);
   const savedEmail = email.toLowerCase();
   if (password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{7,}$/)) {
@@ -17,6 +17,7 @@ const signup = async (req, res) => {
       email: savedEmail,
       password: hashedPassword,
       username,
+      role,
     });
     newuser
       .save()
